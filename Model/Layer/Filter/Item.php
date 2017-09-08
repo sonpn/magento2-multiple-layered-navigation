@@ -12,6 +12,9 @@ class Item extends \Magento\Catalog\Model\Layer\Filter\Item
     public function getRemoveUrl()
     {
         $query = [$this->getFilter()->getRequestVar() => $this->getFilter()->getResetOptionValue($this->getValue())];
+        $query = str_replace('_'.$this->_data['value'],"",$query);
+        $query = str_replace($this->_data['value'].'_',"",$query);
+        $query = str_replace($this->_data['value'],"",$query);
         $params['_current'] = true;
         $params['_use_rewrite'] = true;
         $params['_query'] = $query;

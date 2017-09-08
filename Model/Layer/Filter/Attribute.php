@@ -169,11 +169,11 @@ class Attribute extends CoreAttribute
             ->getSelectOptions();
         $usedOptions = $this->getValueAsArray();
         foreach ($options as $option) {
-            if (empty($option['value']) || in_array($option['value'], $usedOptions)) {
+            if (empty($option['value']) && !in_array($option['value'], $usedOptions)) {
                 continue;
             }
             // Check filter type
-            if (empty($optionsFacetedData[$option['value']]['count'])) {
+            if (empty($optionsFacetedData[$option['value']]['count']) && !in_array($option['value'], $usedOptions)) {
                 continue;
             }
             $this->itemDataBuilder->addItemData(
